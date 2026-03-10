@@ -57,6 +57,9 @@ AuroraDL works well for:
 ---
 <img width="668" height="440" alt="Screenshot 2026-03-07 130424" src="https://github.com/user-attachments/assets/427f3857-6918-4b8d-b414-20d932c9528a" />
 
+<img width="953" height="616" alt="image" src="https://github.com/user-attachments/assets/91f06c4d-69b7-4efd-bcb7-1d0f86738880" />
+
+
 
 ## Quick Start
 
