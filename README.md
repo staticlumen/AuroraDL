@@ -50,12 +50,8 @@ AuroraDL works well for:
 ---
 
 ## Demo
+```<img width="709" height="282" alt="Screenshot 2026-03-07 113540" src="https://github.com/user-attachments/assets/037ccdd1-0e84-4887-8465-09d3498a4b2c" />
 
-*(Add screenshots or a short GIF here)*
-
-Example:
-
-![AuroraDL Interface](screenshots/interface.png)
 
 ---
 
@@ -74,7 +70,8 @@ Run the application
 
 ```id="runexample1"
 run-native.bat
-```
+
+
 
 Then:
 
