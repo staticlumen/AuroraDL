@@ -1,1 +1,4 @@
-api keys.txt
+bin/
+obj/
+release/
+tools/*.exe
