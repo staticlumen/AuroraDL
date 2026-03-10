@@ -1,7 +1,0 @@
-$env:ACRCLOUD_HOST = "identify-eu-west-1.acrcloud.com"
-$env:ACRCLOUD_ACCESS_KEY = "eabc3eb8091e73265f9d51d654133e6c"
-$env:ACRCLOUD_ACCESS_SECRET = "cPFVLmSU7HJeFijM4hXFuXNbBvvpnyaRespEZ04I"
-$env:TG_API_ID = "35631486"
-$env:TG_API_HASH = "e09a241a49994df7fed7052cc1152ac9"
-$env:TG_PHONE = "+254112576616"
-.\run-native.ps1
