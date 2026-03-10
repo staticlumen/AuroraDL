@@ -1,93 +1,131 @@
-# AuroraDL (Music Spectrometer)
+# AuroraDL
 
-Native Windows desktop app that captures whole-system audio using WASAPI loopback (default playback device). No browser screen-share prompt.
+### High-Quality Music & Video Downloader for Windows
 
-## Features
+AuroraDL is a **native Windows desktop downloader** designed to extract **high-quality audio and video** from online media sources.
 
-- Real-time spectrometer overlay from system audio
-- WASAPI loopback capture for the default playback device (no mic required)
-- Calibrated STFT amplitude and dBFS display
-- Optional track recognition via ACRCloud
-- Optional downloads via Telegram and YouTube (yt-dlp + ffmpeg)
+Unlike many download tools that produce incompatible or low-quality files, AuroraDL focuses on generating **clean, editor-friendly media** suitable for music libraries, DJs, and video editing workflows.
 
-## Requirements
+The project originally began as an audio spectrometer experiment, but evolved into a **powerful media acquisition tool** optimized for quality.
 
-1. Windows 10/11.
-2. .NET 8 SDK (x64).
-   - https://dotnet.microsoft.com/download/dotnet/8.0
+---
 
-Optional (for downloads and recognition):
+## What Makes AuroraDL Different
 
-- ACRCloud credentials
-- Telegram API credentials
-- `yt-dlp.exe` + `ffmpeg.exe` in a `tools` folder
+Most download tools focus on speed.
+AuroraDL focuses on **output quality and usability**.
+
+AuroraDL aims to produce files that:
+
+* preserve the highest available bitrate
+* remain compatible with editing software
+* avoid unnecessary recompression
+* integrate cleanly into music or video workflows
+
+---
+
+## Core Features
+
+* Download **high-quality music and video**
+* Select the **best available streams**
+* Produce **clean MP4 / audio files**
+* Designed for **Windows desktop workflows**
+* Built with **.NET and modern tooling**
+
+Bonus capability:
+
+* Real-time **audio spectrometer visualization** from system audio
+
+---
+
+## Example Use Cases
+
+AuroraDL works well for:
+
+* Building a **high-quality personal music library**
+* Extracting tracks for **DJ sets**
+* Downloading **video sources for editing**
+* Capturing media in formats compatible with editing tools
+
+---
+
+## Demo
+
+*(Add screenshots or a short GIF here)*
+
+Example:
+
+![AuroraDL Interface](screenshots/interface.png)
+
+---
 
 ## Quick Start
 
-1. Double-click `run-native.bat` (or run `run-native.ps1`).
-2. Click `Start`.
-3. Play audio on your Windows machine.
+Requirements
 
-The app captures from the current default output endpoint (headphones/speakers) using loopback.
+* Windows 10 / 11
+* .NET 8 SDK (x64)
 
-## Run From CLI
+Download .NET if needed:
 
-```powershell
-dotnet run --project AuroraDL/auroradl.csproj -c Release
+https://dotnet.microsoft.com/download/dotnet/8.0
+
+Run the application
+
+```id="runexample1"
+run-native.bat
 ```
 
-## Optional Setup (Recognition + Downloads)
+Then:
 
-You can add credentials inside the app (Controls page) or set environment variables.
-The app stores values in `%LOCALAPPDATA%\auroradl\env-settings.json` (lightly obfuscated).
+1. Launch AuroraDL
+2. Paste a media link
+3. Download high-quality audio or video
 
-Required keys:
+---
 
-- `ACR_HOST` (for example: `identify-*.acrcloud.com`)
-- `ACR_ACCESS_KEY`
-- `ACR_ACCESS_SECRET`
-- `TG_API_ID`
-- `TG_API_HASH`
-- `TG_PHONE` (format `+1234567890`)
+## Project Structure
 
-Tools:
+```id="runexample2"
+AuroraDL/
+ ├─ auroradl.csproj
+ ├─ auroradl.sln
+ ├─ run-native.bat
+ ├─ run-native.ps1
+ ├─ Downloader/
+ ├─ Math/
+ └─ ...
+```
 
-- Create a `tools` folder at the repo root (or next to the built exe).
-- Place `yt-dlp.exe` and `ffmpeg.exe` inside `tools`.
+---
 
-## How It Works (Code Tour)
+## Technology
 
-- `Program.cs` sets up crash logging and starts the WinForms app.
-- `AudioLoopbackEngine.cs` captures system audio via WASAPI loopback and converts it to mono float samples.
-- `SpectralAnalyzer.cs` applies a Hann window, runs the FFT, and computes single-sided magnitudes in dBFS.
-- `Fft.cs` is a straightforward in-place radix-2 FFT.
-- `MainForm.cs` is the core UI and workflow:
-  - Maintains a rolling audio buffer.
-  - Converts spectral bins into a smooth, logarithmic frequency curve for display.
-  - Triggers periodic recognition attempts and manages download queues.
-- `AcrCloudClient.cs` builds a WAV payload, signs the request, and parses ACRCloud results.
+AuroraDL integrates several tools and systems:
 
-## Math/Calibration
+* .NET 8 desktop application
+* Modern media extraction pipelines
+* Windows-native execution environment
+* Optional DSP visualization components
 
-The native app uses a calibrated STFT approach:
+---
 
-- Hann window: `w[n] = 0.5 - 0.5 cos(2πn/N)`
-- FFT on windowed frame
-- Single-sided amplitude:
-  - `A[k] = |X[k]| / Σw[n]` for DC and Nyquist
-  - `A[k] = 2|X[k]| / Σw[n]` for other bins
-- dBFS:
-  - `dBFS[k] = 20 log10(max(A[k], 1e-12))`
+## Project History
 
-## Project Layout
+AuroraDL began as an experiment in **real-time audio spectrometry**, using WASAPI loopback capture and STFT analysis.
 
-- `AuroraDL/auroradl.csproj`
-- `AuroraDL/auroradl.sln`
-- `run-native.bat`
-- `run-native.ps1`
-- `auroradl.sln`
+While developing the audio pipeline, the project expanded into a **high-quality media downloader**, which became the primary focus.
+
+The spectrometer remains as an experimental component.
+
+---
 
 ## Notes
 
-- Switching the default Windows playback device while running may require stop/start.
-- The older browser-based files remain in the repo but are not the recommended path.
+Some experimental browser-based files remain in the repository from early prototypes but are no longer the recommended path.
+
+---
+
+## License
+
+MIT
